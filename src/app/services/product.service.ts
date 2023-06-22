@@ -33,4 +33,6 @@ export class ProductService {
     debugger;
       return this.http.post<any>("https://onlinetestapi.gerasim.in/api/Ecomm/AddNewSale", obj);
   }
+  
 }
+

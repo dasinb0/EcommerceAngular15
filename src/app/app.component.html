@@ -3,7 +3,24 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-top">
     <div class="container">
       <a class="navbar-brand fs-2 fw-bold" href="#"><i class="fa fa-shopping-cart fs-2" style="color: #f54242;"></i><span
-          class="textBlur">Shopwise</span></a>
+          class="textBlur">E-Shop</span></a>
+          <!--Formulario de búsqueda -->
+          <form class="d-flex mx-3" (ngSubmit)="searchProducts()">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchTerm" name="searchTerm">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+          </form>
+          
+          <div *ngIf="filteredProducts.length > 0" class="search-results">
+            <h3>Resultados:</h3>
+            <div class="search-result" *ngFor="let product of filteredProducts">
+              <img [src]="product.productImageUrl" alt="{{ product.productName }}">
+              <p>{{ product.productName }}</p>
+              <button class="btn btn-close" (click)="closeSearchResults()">&times;</button>
+            </div>
+          </div>
+          
+          
+          
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <!--Toggle  -->
@@ -23,21 +40,11 @@
               <li><a class="dropdown-item" href="#">Option</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-black me-1" href="#"
-              id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              pages
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-            </ul>
-          </li>
+        
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle fw-semibold text-uppercase text-black me-1" href="#" id="navbarDropdown"
               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              product
+              products
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#">Option</a></li>
@@ -45,17 +52,7 @@
               <li><a class="dropdown-item" href="#">Option</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown fw-semibold text-uppercase text-black me-1">
-            <a class="nav-link dropdown-toggle fw-semibold text-uppercase text-black me-1" href="#" id="navbarDropdown"
-              role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              blog
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-            </ul>
-          </li>
+        
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle fw-semibold text-uppercase text-black me-1" href="#" id="navbarDropdown"
               role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,21 +67,17 @@
           <li class="nav-item">
             <a class="nav-link fw-semibold text-uppercase text-black me-1" href="#">Contact us</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <i class="fa fa-search fs-5" style="color: #202122;"></i>
-            </a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle cart fw-semibold text-uppercase text-black me-1" href="#" id="navbarDropdown"
               role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-cart-plus fs-5" style="color: #202122;"></i>
               <span class="position-absolute translate-middle badge rounded-pill bg-danger">
                 {{cartProducts.length}}
+                
                 <span class="visually-hidden">unread messages</span>
               </span>
             </a>
-            <div class="dropdown-menu dropdown-menu-end cart-dropdown" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-end cart-dropdown cart-dropdown-full" aria-labelledby="navbarDropdown">
               <div class="CartContainer">
                 <div class="row">
                   <div class="col-12">
@@ -98,8 +91,6 @@
                   <div class="col-6 align-self-center">
                     <div class="text-truncate">{{cart.productName}}</div>
                     <div class="text-muted"><small>{{cart.quantity + 1}} item(s)</small></div>
-                  </div>
-                  <div class="col-2 align-self-center text-end">
                     <div class="text-danger">$ {{cart.productPrice}}</div>
                   </div>
                 </div>
@@ -112,7 +103,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col-12 mt-2">
                     <div class="text-end">
                       <button class="btn btn-sm btn-success" (click)="redirectToSale()">Checkout</button>
                     </div>
@@ -120,15 +111,50 @@
                 </div>
               </div>
             </div>
-          </li>
+            </li>
+              <li class="nav-item">
+             <a class="nav-link" href="#">
+              <i class="fa fa-user" style="color: #202122; font-size: 1.2rem;"></i>
+             </a>
+             </li>
+          
         </ul>
       </div>
     </div>
   </nav>
 </header>
 <section id="product">
-  <div class="container">
+  <div class="container" style="margin-bottom: 50px;">
     <router-outlet></router-outlet>
   </div>
 </section>
+
+<hr class="footer-divider">
+
+
+<footer>
+  <div class="footer-container">
+    <nav class="footer-menu">
+      <h4 class="textBlur">Navigation</h4>
+      <a routerLink="/" class="menu-option textBlur">Home</a>
+      <a routerLink="/cart" class="menu-option textBlur">Cart</a>
+      <a routerLink="/sale" class="menu-option textBlur">Sale</a>
+    </nav>
+
+    <div class="footer-payment">
+      <span class="textBlur"><h4>Payment Methods</h4></span>
+      <img class="box-shadow" src="assets/visa.png" alt="Medio de pago 1">
+      <img class="box-shadow" src="assets/master.png" alt="Medio de pago 2">
+      <img class="box-shadow" src="assets/american.png" alt="Medio de pago 3">
+    </div>
+
+    <div class="footer-social">
+      <h4>Social Network</h4>
+      <a href="https://www.facebook.com" class="textBlur">Facebook</a>
+      <a href="https://www.twitter.com" class="textBlur">Twitter</a>
+      <a href="https://www.instagram.com" class="textBlur">Instagram</a>
+    </div>
+  </div>
+</footer>
+
 
