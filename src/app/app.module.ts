@@ -10,6 +10,8 @@ import { SaleComponent } from './pages/sale/sale.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './pages/login/login.component';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HomeComponent,
     CartComponent,
-    SaleComponent
+    SaleComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

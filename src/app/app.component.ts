@@ -14,6 +14,12 @@ export class AppComponent implements OnInit {
   searchTerm: string = '';
   products: any[] = [];
   filteredProducts: any[] = [];
+  showSubmenu: boolean = false;
+  showBazarSubmenu: boolean = false;
+  showJuguetesSubmenu: boolean = false;
+  showRopaSubmenu: boolean = false; 
+  showZapatillaSubmenu: boolean = false;
+  
 
   constructor(private productService: ProductService, private router: Router) {
     this.productService.cartAddedSubject.subscribe(res => {
@@ -56,11 +62,31 @@ export class AppComponent implements OnInit {
     }
   }
 
-  
   closeSearchResults() {
     this.filteredProducts = [];
   }
+
+  toggleSubmenu() {
+    this.showSubmenu = !this.showSubmenu;
+  }
+
+  toggleBazarSubmenu() {
+    this.showBazarSubmenu = !this.showBazarSubmenu;
+  }
+  
+  toggleJuguetesSubmenu() {
+    this.showJuguetesSubmenu = !this.showJuguetesSubmenu;
+  }
+   
+  toggleRopaSubmenu() {
+    this.showRopaSubmenu = !this.showRopaSubmenu;
+  }
+
+  togglezapatillasSubmenu() {
+    this.showZapatillaSubmenu = !this.showZapatillaSubmenu;
+  }
 }
+
 
 
 

@@ -2,22 +2,28 @@
   <!-- NavBar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-top">
     <div class="container">
-      <a class="navbar-brand fs-2 fw-bold" href="#"><i class="fa fa-shopping-cart fs-2" style="color: #f54242;"></i><span
-          class="textBlur">E-Shop</span></a>
-          <!--Formulario de búsqueda -->
-          <form class="d-flex mx-3" (ngSubmit)="searchProducts()">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchTerm" name="searchTerm">
-            <button class="btn btn-outline-primary" type="submit">Search</button>
-          </form>
-          
-          <div *ngIf="filteredProducts.length > 0" class="search-results">
-            <h3>Resultados:</h3>
-            <div class="search-result" *ngFor="let product of filteredProducts">
-              <img [src]="product.productImageUrl" alt="{{ product.productName }}">
-              <p>{{ product.productName }}</p>
-              <button class="btn btn-close" (click)="closeSearchResults()">&times;</button>
-            </div>
-          </div>
+      <div class="navbar-collapse justify-content-start">
+        <a class="navbar-brand fs-2 fw-bold" href="#">
+          <i class="fa fa-shopping-cart fs-2" style="color: #f54242;"></i>
+          <span class="textBlur">E-Shop</span>
+        </a>
+      </div>
+      
+      <div class="navbar-collapse justify-content-end">
+        <form class="me-3" (ngSubmit)="searchProducts()">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchTerm" name="searchTerm">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
+      </div>
+    
+      <div *ngIf="filteredProducts.length > 0" class="search-results">
+        <h3>Resultados:</h3>
+        <div class="search-result" *ngFor="let product of filteredProducts">
+          <img [src]="product.productImageUrl" alt="{{ product.productName }}">
+          <p>{{ product.productName }}</p>
+          <button class="btn btn-close" (click)="closeSearchResults()">&times;</button>
+        </div>
+      </div>
           
           
           
@@ -32,40 +38,63 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle fw-semibold text-uppercase me-1 text-danger" href="#"
               id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              home
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-            </ul>
-          </li>
-        
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle fw-semibold text-uppercase text-black me-1" href="#" id="navbarDropdown"
-              role="button" data-bs-toggle="dropdown" aria-expanded="false">
               products
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
+         <li class="dropdown-submenu" (mouseenter)="toggleBazarSubmenu()" (mouseleave)="toggleBazarSubmenu()">
+  <a class="dropdown-item" href="#">Bazar &raquo;</a>
+  <ng-template [ngIf]="showBazarSubmenu">
+    <ul class="dropdown-menu submenu-right">
+      <li><a class="dropdown-item" href="#">Cocina</a></li>
+      <li><a class="dropdown-item" href="#">Baño</a></li>
+      <li><a class="dropdown-item" href="#">Mesa</a></li>
+      <li><a class="dropdown-item" href="#">Deco</a></li>
+      <li><a class="dropdown-item" href="#">Regalos</a></li>
+      <li><a class="dropdown-item" href="#">Festividades</a></li>
+    </ul>
+  </ng-template>
+</li>
+
+<li class="dropdown-submenu" (mouseenter)="toggleJuguetesSubmenu()" (mouseleave)="toggleJuguetesSubmenu()">
+  <a class="dropdown-item" href="#">Juguetes &raquo;</a>
+  <ng-template [ngIf]="showJuguetesSubmenu">
+    <ul class="dropdown-menu submenu-right">
+      <li><a class="dropdown-item" href="#">Niño</a></li>
+      <li><a class="dropdown-item" href="#">Niña</a></li>
+      <li><a class="dropdown-item" href="#">Bebe</a></li>
+    </ul>
+  </ng-template>
+</li>
+
+<li class="dropdown-submenu" (mouseenter)="toggleRopaSubmenu()" (mouseleave)="toggleRopaSubmenu()">
+  <a class="dropdown-item" href="#">Ropa &raquo;</a>
+  <ng-template [ngIf]="showRopaSubmenu">
+    <ul class="dropdown-menu submenu-right">
+      <li><a class="dropdown-item" href="#">Hombre</a></li>
+      <li><a class="dropdown-item" href="#">Mujer</a></li>
+      <li><a class="dropdown-item" href="#">Infantil</a></li>
+      <li><a class="dropdown-item" href="#">Deportiva</a></li>
+    </ul>
+  </ng-template>
+</li>
+<li class="dropdown-submenu" (mouseenter)="togglezapatillasSubmenu()" (mouseleave)="togglezapatillasSubmenu()">
+  <a class="dropdown-item" href="#">Calzado &raquo;</a>
+  <ng-template [ngIf]="showZapatillaSubmenu">
+    <ul class="dropdown-menu submenu-right">
+      <li><a class="dropdown-item" href="#">Hombre</a></li>
+      <li><a class="dropdown-item" href="#">Mujer</a></li>
+      <li><a class="dropdown-item" href="#">Niños</a></li>
+      <li><a class="dropdown-item" href="#">Unisex</a></li>
+    </ul>
+  </ng-template>
+</li>
             </ul>
           </li>
+          
+          
         
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle fw-semibold text-uppercase text-black me-1" href="#" id="navbarDropdown"
-              role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              shop
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-            </ul>
-          </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold text-uppercase text-black me-1" href="#">Contact us</a>
+            <a class="nav-link fw-semibold text-uppercase text-black me-1" href="#">Contact</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle cart fw-semibold text-uppercase text-black me-1" href="#" id="navbarDropdown"
@@ -112,11 +141,12 @@
               </div>
             </div>
             </li>
-              <li class="nav-item">
-             <a class="nav-link" href="#">
-              <i class="fa fa-user" style="color: #202122; font-size: 1.2rem;"></i>
-             </a>
-             </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login">
+                <i class="fa fa-user" style="color: #202122; font-size: 1.2rem;"></i>
+                <span class="login-text"><strong>Login</strong></span>
+              </a>
+            </li>
           
         </ul>
       </div>

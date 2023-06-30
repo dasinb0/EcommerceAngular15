@@ -13,6 +13,12 @@
     margin-right: 20px;
   }
   
+
+  .submenu-right {
+    left: 100% !important;
+    top: 0 !important;
+  }
+  
   .navbar form input {
     height: 30px;
     padding: 5px 10px;
@@ -46,6 +52,7 @@
     margin-top: 0;
   }
   
+  
   .box-shadow {
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.19);
   }
@@ -56,9 +63,12 @@
   
   .search-results {
     position: absolute;
-    top: 100%;
-    left: 0;
-    width: 30%;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
     background-color: white;
     border: 1px solid gray;
     padding: 10px;
@@ -76,11 +86,11 @@
     height: 50px;
     margin-right: 10px;
   }
-
+  
   .search-result .btn-close {
-    margin-top: -10px; /* Ajustamos el margen superior negativo para elevar la X */
+    margin-top: -10px;
   }
-
+  
   .btn-close {
     margin-left: auto;
     font-size: 1.5rem;
