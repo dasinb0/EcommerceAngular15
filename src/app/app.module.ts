@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { BazarComponent } from './pages/bazar/bazar.component';
+import { CocinaComponent } from './pages/cocina/cocina.component';
+
+
 
 
 
@@ -23,6 +26,7 @@ import { BazarComponent } from './pages/bazar/bazar.component';
     SaleComponent,
     LoginComponent,
     BazarComponent,
+    CocinaComponent,
   ],
   imports: [
     BrowserModule,
